@@ -1,9 +1,10 @@
 from sys import argv
 
+l = [0] * 30000
+ptr = 0    
 
 def handle(char):
     print(char)
-
 
 def main():
     filename = argv[1]
