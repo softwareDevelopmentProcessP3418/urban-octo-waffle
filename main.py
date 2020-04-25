@@ -16,6 +16,12 @@ class State:
     def move_ptr_left(self):
         self.ptr -= 1
 
+    def increment_current_cell(self):
+        self.array[self.ptr] += 1
+
+    def decrement_current_cell(self):
+        self.array[self.ptr] -= 1
+
 
 class BrainfuckSymbols(Enum):
     GREATER_THAN = '>'
