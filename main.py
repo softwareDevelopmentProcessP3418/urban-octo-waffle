@@ -31,6 +31,14 @@ class BrainfuckSymbols(Enum):
             raise IOError('Error: Symbol \'' + char + '\' is not the part of a Brainfuck language')
         return token
 
+def move_ptr_right():
+    global ptr
+    ptr += 1
+
+def move_ptr_left():
+    global ptr
+    ptr -= 1
+
 def main():
     filename = argv[1]
     tokenized_symbols = []
@@ -38,8 +46,7 @@ def main():
         for line in f:
             for c in line:
                 token = BrainfuckSymbols.get_token(c)
-                tokenized_symbols.append(token)
-
+                tokenized_symbols.append(token) 
 
 if __name__ == '__main__':
     main()
