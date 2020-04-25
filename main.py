@@ -47,10 +47,11 @@ def get_action(char):
 
 def main():
     filename = argv[1]
+    state = State()
     with open(filename) as f:
         for line in f:
             for c in line:
-                pass
+                get_action(c)(state)
 
 
 if __name__ == '__main__':
