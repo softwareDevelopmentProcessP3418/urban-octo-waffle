@@ -3,17 +3,22 @@ from enum import Enum
 
 
 class State:
-    array = [0] * 30000
+    array = [0]
     ptr = 0
 
     def reset(self):
-        self.array = [0] * 30000
+        self.array = [0]*3000
         self.ptr = 0
 
     def move_ptr_right(self):
+        if (self.ptr == (len(self.array) - 1)):
+            self.array.append(0)        
         self.ptr += 1
 
     def move_ptr_left(self):
+        if (self.ptr == 0):
+            self.array.insert(0, 0)
+            return
         self.ptr -= 1
 
     def increment_current_cell(self):
@@ -61,7 +66,7 @@ def main():
             for c in line:
                 token = BrainfuckSymbols.get_token(c)
                 tokenized_symbols.append(token)
-
+    
 
 if __name__ == '__main__':
     main()
