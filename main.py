@@ -1,4 +1,4 @@
-from sys import argv
+from sys import argv, stderr
 from readchar import readchar
 
 
@@ -48,17 +48,22 @@ def get_action(char):
     }
     action = switcher.get(char, None)
     if action is None:
-        raise IOError('Symbol \'' + char + '\' is not the part of a Brainfuck language')
+        raise SyntaxError("Symbol '{}' is not part of Brainfuck language".format(char))
     return action
 
 
 def main():
     filename = argv[1]
     state = State()
-    with open(filename) as f:
-        for line in f:
-            for c in line:
-                get_action(c)(state)
+    try:
+        with open(filename) as f:
+            for line in f:
+                for c in line:
+                    get_action(c)(state)
+    except SyntaxError as e:
+        print(e.msg, file=stderr)
+    except FileNotFoundError as e:
+        print("{}: {}".format(e.strerror, e.filename), file=stderr)
 
 
 if __name__ == '__main__':
