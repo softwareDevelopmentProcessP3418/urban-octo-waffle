@@ -7,7 +7,7 @@ class State:
     ptr = 0
 
     def reset(self):
-        self.array = [0]*3000
+        self.array = [0]
         self.ptr = 0
 
     def move_ptr_right(self):
