@@ -1,4 +1,5 @@
 from sys import argv
+from readchar import readchar
 
 
 class State:
@@ -26,6 +27,12 @@ class State:
     def decrement_current_cell(self):
         self.array[self.ptr] -= 1
 
+    def print_char(self):
+        print(chr(self.array[self.ptr]), end="")
+
+    def get_char(self):
+        self.array[self.ptr] = ord(readchar())
+
 
 def get_action(char):
     switcher = {
@@ -33,8 +40,8 @@ def get_action(char):
         '<': State.move_ptr_left,
         '+': State.increment_current_cell,
         '-': State.decrement_current_cell,
-        '.': None,
-        ',': None,
+        '.': State.print_char,
+        ',': State.get_char,
         '[': None,
         ']': None,
         '!': State.reset
